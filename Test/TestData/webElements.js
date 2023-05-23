@@ -1,19 +1,35 @@
 export class WeatherElements {
     
     weatherApp_NightOrDay_Button = '.svg-inline--fa'
-    weatherApp_Theme = ':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input'
-    change_NightOrDay_Button = '.oxd-button'
+    weatherApp_Theme_Dark = 'main.dark'
+    weatherApp_Theme_Light = 'main.light'
+    button_attributes_Dark = 'moon'
+    button_attributes_Light = 'sun'
 
-    enterUsername(username){
-        cy.get(this.loginpage_textbox_username).type(username)
+    findButton(){
+        cy.get(this.weatherApp_NightOrDay_Button)
     }
 
-    enterPassword(password){
-        cy.get(this.loginpage_textbox_password).type(password)
+    buttonIconCheck_Dark(){
+        cy.get(this.weatherApp_NightOrDay_Button).should('have.attr','data-icon',this.button_attributes_Dark)
+    }
+    buttonIconCheck_Light(){
+        cy.get(this.weatherApp_NightOrDay_Button).should('have.attr','data-icon',this.button_attributes_Light)
     }
 
-    clickLogin(){
-        cy.get(this.loginpage_loginbutton).click()
+    clickLightMode(){
+        cy.get(this.weatherApp_NightOrDay_Button).should('have.attr','data-icon',this.button_attributes_Dark).click()
     }
 
+    clickDarkMode(){
+        cy.get(this.weatherApp_NightOrDay_Button).should('have.attr','data-icon',this.button_attributes_Light).click()
+    }
+
+    websiteTheme_Dark(){
+        cy.get(this.weatherApp_Theme_Dark)
+    }
+
+    websiteTheme_Light(){
+        cy.get(this.weatherApp_Theme_Dark)
+    }
 }
